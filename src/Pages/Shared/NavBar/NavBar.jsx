@@ -1,39 +1,111 @@
-import { NavLink } from "react-router-dom";
+import { AiOutlineMenu } from 'react-icons/ai'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
+import useAuth from '../../../hooks/useAuth'
+import avatarImg from '../../../assets/placeholder.jpg'
 
 
 const NavBar = () => {
+    const { user, logOut } = useAuth()
+    const [isOpen, setIsOpen] = useState(false)
+    // const navLinks = <>
+    //     <NavLink to='/' className={({ isActive }) => isActive ? 'font-bold ml-3' : 'font-normal ml-3'}>Home</NavLink>
+    //     <NavLink to='/h' className={({ isActive }) => isActive ? 'font-bold ml-3' : 'font-normal ml-3'}>Category</NavLink>
+    //     <NavLink to='/c' className={({ isActive }) => isActive ? 'font-bold ml-3' : 'font-normal ml-3'}>Home</NavLink>
+    // </>
 
-    const navLinks = <>
-        <NavLink to='/' className={({ isActive }) => isActive ? 'font-bold ml-3' : 'font-normal ml-3'}>Home</NavLink>
-        <NavLink to='/h' className={({ isActive }) => isActive ? 'font-bold ml-3' : 'font-normal ml-3'}>Category</NavLink>
-        <NavLink to='/c' className={({ isActive }) => isActive ? 'font-bold ml-3' : 'font-normal ml-3'}>Home</NavLink>
-    </>
+return (
+    <div className='fixed w-full bg-white z-10 shadow-sm'>
+      <div className='py-4 border-b-[1px]'>
+        
+          <div className='flex flex-row  items-center justify-between gap-3 md:gap-0'>
+            {/* Logo */}
+            <Link to='/'>
+              <img
+                // className='hidden md:block'
+                src='https://i.ibb.co/4ZXzmq5/logo.png'
+                alt='logo'
+                width='100'
+                height='100'
+              />
+            </Link>
+            <h2>jjjj</h2>
+            {/* Dropdown Menu */}
+            <div className='relative'>
+              <div className='flex flex-row items-center gap-3'>
+                {/* Become A Host btn */}
+                <div className='hidden md:block'>
+                  {!user && (
+                    <button
+                      disabled={!user}
+                      className='disabled:cursor-not-allowed cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full  transition'
+                    >
+                      Host your home
+                    </button>
+                  )}
+                </div>
+                {/* Dropdown btn */}
+                <div
+                  onClick={() => setIsOpen(!isOpen)}
+                  className='p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
+                >
+                  <AiOutlineMenu className='md:hidden' />
+                  <div className='hidden md:block'>
+                    {/* Avatar */}
+                    <img
+                      className='rounded-full'
+                      referrerPolicy='no-referrer'
+                      src={user && user.photoURL ? user.photoURL : avatarImg}
+                      alt='profile'
+                      height='40'
+                      width='40'
+                    />
+                  </div>
+                </div>
+              </div>
+              {isOpen && (
+                <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
+                  <div className='flex flex-col cursor-pointer'>
+                    <Link
+                      to='/'
+                      className='block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                    >
+                      Home
+                    </Link>
 
-    return (
-        <>
-            <div className="navbar bg-base-100">
-                <div className="navbar-start">
-                    <div className="dropdown">
-                        <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+                    {user ? (
+                      <>
+                        <div
+                          onClick={logOut}
+                          className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
+                        >
+                          Logout
                         </div>
-                        <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                            {navLinks}
-                        </ul>
-                    </div>
-                    <a className="btn btn-ghost text-xl">Awei</a>
+                      </>
+                    ) : (
+                      <>
+                        <Link
+                          to='/login'
+                          className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                        >
+                          Login
+                        </Link>
+                        <Link
+                          to='/signUp'
+                          className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                        >
+                          Sign Up
+                        </Link>
+                      </>
+                    )}
+                  </div>
                 </div>
-                <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1">
-                        {navLinks}
-                    </ul>
-                </div>
-                <div className="navbar-end">
-                    <a className="btn">Button</a>
-                </div>
+              )}
             </div>
-        </>
-    );
+          </div>
+      </div>
+    </div>
+  )
 };
 
 export default NavBar;
