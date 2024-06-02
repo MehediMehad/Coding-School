@@ -2,12 +2,18 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
 import useAuth from '../../hooks/useAuth'
 import axios from 'axios'
-import toast from 'react-hot-toast'
 import { TbFidgetSpinner } from 'react-icons/tb'
 import signUpImg from '../../assets/signUp.jpg'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
 
 const SignUp = () => {
     const navigate = useNavigate()
+    const [roleValue, setRoleValue] = useState('')
+
+    const handleChange = (event) =>{
+        setRoleValue(event.target.value)
+    }
     const {
         createUser,
         signInWithGoogle,
@@ -18,6 +24,9 @@ const SignUp = () => {
 
     const handleSubmit = async e => {
         e.preventDefault()
+        if (!roleValue) {
+          return alert("Set Roll")
+        }
         const form = e.target
         const name = form.name.value
         const email = form.email.value
@@ -43,10 +52,10 @@ const SignUp = () => {
             // 3. Save username and photo in firebase
             await updateUserProfile(name, data.data.display_url)
             navigate('/')
-            toast.success('Registration Successful')
+            alert('Registration Successful')
         } catch (err) {
             console.log(err)
-            toast.error(err.message)
+            alert(err.message)
         }
     }
 
@@ -59,7 +68,7 @@ const SignUp = () => {
             toast.success('Registration Successful')
         } catch (err) {
             console.log(err)
-            toast.error(err.message)
+            alert.error(err.message)
         }
     }
 
@@ -76,6 +85,19 @@ const SignUp = () => {
                     </div>
                     <form onSubmit={handleSubmit} className='space-y-6'>
                         <div className='space-y-4'>
+                            <div>
+                                <label htmlFor='email' className='block mb-2 text-sm'>
+                                    Role
+                                </label>
+                                <select value={roleValue}
+                                onChange={handleChange}
+                                required
+                                 className="select select-bordered w-full max-w-xs">
+                                    <option defaultValue="">Role</option>
+                                    <option value="Employee">Employee</option>
+                                    <option value="HR">HR</option>
+                                </select>
+                            </div>
                             <div>
                                 <label htmlFor='email' className='block mb-2 text-sm'>
                                     Name
