@@ -70,7 +70,7 @@ const NavBar = () => {
                   {user ? (
                     <>
                       <Link
-                        to='/dashboard'
+                        to='/dashboard/work-sheet'
                         className='block px-4 py-3 hover:bg-neutral-100 transition font-semibold'
                       >
                         Dashboard
