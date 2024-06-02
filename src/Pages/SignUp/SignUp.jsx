@@ -5,7 +5,6 @@ import axios from 'axios'
 import { TbFidgetSpinner } from 'react-icons/tb'
 // import signUpImg from '../../assets/signUp.jpg'
 import { useState } from 'react'
-import { toast } from 'react-toastify'
 import useAxiosCommon from '../../hooks/useAxiosCommon'
 
 const SignUp = () => {
@@ -66,7 +65,7 @@ const SignUp = () => {
                 bankAccount: bankAccount
             }
             console.log(userInfo);
-            axiosCommon.post('/users', userInfo)
+            axiosCommon.put('/users', userInfo)
             navigate('/')
             alert('Registration Successful')
         } catch (err) {
@@ -76,16 +75,23 @@ const SignUp = () => {
     }
 
     // handle google signIn
-    const handleGoogleSignIn = async () => {
-        try {
-            await signInWithGoogle()
-
-            navigate('/')
-            toast.success('Registration Successful')
-        } catch (err) {
-            console.log(err)
-            alert.error(err.message)
-        }
+    const handleGoogleSignIn = () => {
+        signInWithGoogle()
+        .then(result =>{
+            const userInfo = {
+                email: result.user?.email,
+                name: result.user?.displayName,
+                role: "Employee",
+                designation: 'default',
+                salary: 11111,
+                bankAccount:9999
+            }
+            axiosCommon.post('/users', userInfo)
+            .then(res =>{
+                console.log(res.data);
+                navigate('/')
+            })
+        })
     }
 
     return (

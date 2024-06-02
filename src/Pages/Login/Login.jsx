@@ -5,9 +5,11 @@ import { TbFidgetSpinner } from 'react-icons/tb'
 import { useState } from 'react'
 import useAuth from '../../hooks/useAuth'
 import logInImg from '../../assets/signUp.jpg'
+import useAxiosCommon from '../../hooks/useAxiosCommon'
 
 const Login = () => {
   const navigate = useNavigate()
+  const axiosCommon = useAxiosCommon()
   const location = useLocation()
   const from = location?.state || '/'
   const { signInWithGoogle, signIn, loading, setLoading, resetPassword } = useAuth()
@@ -48,15 +50,31 @@ const Login = () => {
 
   // handle google signin
   const handleGoogleSignIn = async () => {
-    try {
-      await signInWithGoogle()
+    // try {
+    //   await signInWithGoogle()
 
-      navigate(from)
-      toast.success('Signup Successful')
-    } catch (err) {
-      console.log(err)
-      toast.error(err.message)
-    }
+    //   navigate(from)
+    //   toast.success('Signup Successful')
+    // } catch (err) {
+    //   console.log(err)
+    //   toast.error(err.message)
+    // }
+    signInWithGoogle()
+    .then(result =>{
+        const userInfo = {
+            email: result.user?.email,
+            name: result.user?.displayName,
+            role: "Employee",
+            designation: 'default',
+            salary: 11111,
+            bankAccount:9999
+        }
+        axiosCommon.post('/users', userInfo)
+        .then(res =>{
+            console.log(res.data);
+            navigate('/')
+        })
+    })
   }
 
   return (
