@@ -1,18 +1,20 @@
 import { useState } from 'react'
 import { GrLogout } from 'react-icons/gr'
 import { FcSettings } from 'react-icons/fc'
-import { BsFillHouseAddFill, BsFingerprint } from 'react-icons/bs'
-import { GrUserAdmin } from 'react-icons/gr'
 import { AiOutlineBars } from 'react-icons/ai'
-import { BsGraphUp } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import { Link } from 'react-router-dom'
-import { MdHomeWork } from 'react-icons/md'
+import { MdHomeWork, MdWorkHistory } from 'react-icons/md'
+import useRole from '../../../hooks/useRole'
+import MenuItem from './Menu/MenuItem'
+import { RiMoneyRupeeCircleFill } from 'react-icons/ri'
 
 const Sidebar = () => {
   const { logOut } = useAuth()
   const [isActive, setActive] = useState(false)
+  const [role, isLoading ] = useRole()
+  console.log(role, isLoading);
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -72,34 +74,10 @@ const Sidebar = () => {
             {/*  Menu Items */}
             <nav>
               {/* Work Sheet */}
-              <NavLink
-                to='work-sheet'
-                end
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                  }`
-                }
-              >
-                <BsGraphUp className='w-5 h-5' />
+              <MenuItem label={'Work Sheet'} address={'work-sheet'} icon={MdWorkHistory}></MenuItem>
+              <MenuItem label={'Payment History'} address={'payment-history'} icon={RiMoneyRupeeCircleFill}></MenuItem>
 
-                <span className='mx-4 font-medium'>Work Sheet</span>
-              </NavLink>
-
-              {/* Add Room */}
-              <NavLink
-                to='payment-history'
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
-                  }`
-                }
-              >
-                <BsFillHouseAddFill className='w-5 h-5' />
-
-                <span className='mx-4 font-medium'>Payment History</span>
-              </NavLink>
-              {/* My Listing */}
+              {/* My Home */}
               <NavLink
                 to='/'
                 className={({ isActive }) =>

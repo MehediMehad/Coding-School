@@ -65,7 +65,7 @@ const SignUp = () => {
                 bankAccount: bankAccount
             }
             console.log(userInfo);
-            axiosCommon.put('/users', userInfo)
+            axiosCommon.post('/users', userInfo)
             navigate('/')
             alert('Registration Successful')
         } catch (err) {
