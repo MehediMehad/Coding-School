@@ -5,24 +5,32 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import useAuth from "../../../hooks/useAuth";
+import useAxiosCommon from "../../../hooks/useAxiosCommon";
+
 
 
 const AddWork = () => {
     const {user} = useAuth()
     const [date, setDate] = useState(new Date());
-    const { register, handleSubmit } = useForm()
-    const onSubmit =  (data) => {
-        const workInfo ={
+    const axiosCommon = useAxiosCommon()
+    const { register, handleSubmit, reset } = useForm()
+    const onSubmit = async (data) => {
+        const workData ={
             name: user?.displayName,
             email: user?.email,
             role: 'Employee',
             tasks: data?.tasks,
             hoursWorked : data?.hoursWorked,
             date: date
-
-
         }
-        console.log(workInfo);
+        const workInfo = await axiosCommon.post('/workSheets', workData,{
+            
+        })
+        if (workInfo.data.insertedId) {
+            alert('success')
+            reset
+        }
+        console.log(workInfo.data);
 
     }
     return (
