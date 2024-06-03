@@ -1,38 +1,14 @@
-import { useForm } from "react-hook-form";
+
 
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { useState } from "react";
-import useAuth from "../../../hooks/useAuth";
-import useAxiosCommon from "../../../hooks/useAxiosCommon";
+
+import WorkList from "../WorkList/WorkList";
 
 
 
-const AddWork = () => {
-    const {user} = useAuth()
-    const [date, setDate] = useState(new Date());
-    const axiosCommon = useAxiosCommon()
-    const { register, handleSubmit, reset } = useForm()
-    const onSubmit = async (data) => {
-        const workData ={
-            name: user?.displayName,
-            email: user?.email,
-            role: 'Employee',
-            tasks: data?.tasks,
-            hoursWorked : data?.hoursWorked,
-            date: date
-        }
-        const workInfo = await axiosCommon.post('/workSheets', workData,{
-            
-        })
-        if (workInfo.data.insertedId) {
-            alert('success')
-            reset
-        }
-        console.log(workInfo.data);
-
-    }
+const AddWork = ({date, setDate, onSubmit, handleSubmit, register, wakings}) => {
     return (
         <div className="">
             <form onSubmit={handleSubmit(onSubmit)}>
@@ -73,6 +49,9 @@ const AddWork = () => {
                     </div>
                 </div>
             </form>
+            <WorkList handleSubmit={handleSubmit}
+            wakings={wakings}
+            ></WorkList>
         </div>
     );
 };

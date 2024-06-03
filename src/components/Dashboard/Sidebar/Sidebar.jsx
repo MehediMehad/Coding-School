@@ -9,11 +9,12 @@ import { MdHomeWork, MdWorkHistory } from 'react-icons/md'
 import useRole from '../../../hooks/useRole'
 import MenuItem from './Menu/MenuItem'
 import { RiMoneyRupeeCircleFill } from 'react-icons/ri'
+import { FaList } from 'react-icons/fa'
 
 const Sidebar = () => {
   const { logOut } = useAuth()
   const [isActive, setActive] = useState(false)
-  const [role, isLoading ] = useRole()
+  const [role, isLoading] = useRole()
   console.log(role, isLoading);
 
   // Sidebar Responsive Handler
@@ -48,9 +49,8 @@ const Sidebar = () => {
 
       {/* Sidebar */}
       <div
-        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${
-          isActive && '-translate-x-full'
-        }  md:translate-x-0  transition duration-200 ease-in-out`}
+        className={`z-10 md:fixed flex flex-col justify-between overflow-x-hidden bg-gray-100 w-64 space-y-6 px-2 py-4 absolute inset-y-0 left-0 transform ${isActive && '-translate-x-full'
+          }  md:translate-x-0  transition duration-200 ease-in-out`}
       >
         <div>
           <div>
@@ -69,20 +69,37 @@ const Sidebar = () => {
 
           {/* Nav Items */}
           <div className='flex flex-col justify-between flex-1 mt-6'>
-            {/* Conditional toggle button here.. */}
 
             {/*  Menu Items */}
             <nav>
-              {/* Work Sheet */}
-              <MenuItem label={'Work Sheet'} address={'work-sheet'} icon={MdWorkHistory}></MenuItem>
-              <MenuItem label={'Payment History'} address={'payment-history'} icon={RiMoneyRupeeCircleFill}></MenuItem>
+              {/* Employee */}
+              {
+                role === 'Employee' && <>
 
+                  <MenuItem label={'Work Sheet'} address={'work-sheet'} icon={MdWorkHistory}></MenuItem>
+                  <MenuItem label={'Payment History'} address={'payment-history'} icon={RiMoneyRupeeCircleFill}></MenuItem>
+                </>
+              }
+              {/* HR */}
+              {
+                role === "HR" && <>
+                  <MenuItem label={'Employee List'} address={'employee-list'} icon={FaList}></MenuItem>
+                  <MenuItem label={'Payment History'} address={'payment-history'} icon={RiMoneyRupeeCircleFill}></MenuItem>
+                </>
+              }
+              {/* Admin */}
+              {
+                role === "Admin" && <>
+
+                  <MenuItem label={'Work Admin Sheet'} address={'work-sheet'} icon={MdWorkHistory}></MenuItem>
+                  <MenuItem label={'Payment Admin History'} address={'payment-history'} icon={RiMoneyRupeeCircleFill}></MenuItem>
+                </>
+              }
               {/* My Home */}
               <NavLink
                 to='/'
                 className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
                   }`
                 }
               >
@@ -101,8 +118,7 @@ const Sidebar = () => {
           <NavLink
             to='/dashboard/profile'
             className={({ isActive }) =>
-              `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
+              `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
               }`
             }
           >
