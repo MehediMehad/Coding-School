@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../../../../hooks/useAxiosCommon";
+import EmployeeListTable from "../../../../components/Dashboard/HR/EmployeeListTable";
 
 
 const EmployeeList = () => {
@@ -15,7 +16,10 @@ const EmployeeList = () => {
       console.log(employees);
     return (
         <div>
-            <h2>EmployeeList</h2>
+            <EmployeeListTable
+            employees={employees}
+            
+            ></EmployeeListTable>
         </div>
     );
 };

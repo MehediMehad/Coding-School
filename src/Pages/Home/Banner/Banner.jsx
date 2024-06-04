@@ -1,15 +1,37 @@
+// Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import img1 from '../../../assets/1.png'
+import img2 from '../../../assets/2.png'
+import img3 from '../../../assets/3.png'
+
+import './banner.css';
+
+// import required modules
+import { Pagination } from 'swiper/modules';
 const Banner = () => {
+    const pagination = {
+        clickable: true,
+        renderBullet: function (index, className) {
+          return '<span class="' + className + '">' + (index + 1) + '</span>';
+        },
+      };
+
     return (
-        <div className="hero min-h-screen" style={{ backgroundImage: 'url(https://i.ibb.co/hBs0xR8/banner.jpg' }}>
-            <div className="hero-overlay bg-opacity-60"></div>
-            <div className="hero-content text-center text-neutral-content">
-                <div className="max-w-md">
-                    <h1 className="mb-5 text-5xl font-bold">Hello there</h1>
-                    <p className="mb-5">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
-                    <button className="btn btn-primary">Get Started</button>
-                </div>
-            </div>
+        <>
+        <div className='h-[900px]'>
+        <Swiper
+          pagination={pagination}
+          modules={[Pagination]}
+          className="mySwiper "
+        >
+          <SwiperSlide><img className='bg-cover' src={img1} alt="banner" /></SwiperSlide>
+          <SwiperSlide><img className='bg-cover' src={img2} alt="banner" /></SwiperSlide>
+          <SwiperSlide><img className='bg-cover' src={img3} alt="banner" /></SwiperSlide>
+        </Swiper>
         </div>
+      </>
     );
 };
 
