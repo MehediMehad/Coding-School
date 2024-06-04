@@ -3,11 +3,14 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import avatarImg from '../../../assets/placeholder.jpg'
+import useRole from '../../../hooks/useRole'
 
 
 const NavBar = () => {
   const { user, logOut } = useAuth()
   const [isOpen, setIsOpen] = useState(false)
+  const [role] = useRole()
+
 
   return (
     <div className='fixed w-full max-h-20 bg-white z-10 shadow-sm'>
@@ -69,12 +72,36 @@ const NavBar = () => {
 
                   {user ? (
                     <>
-                      <Link
-                        to='/dashboard/work-sheet'
-                        className='block px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                      >
-                        Dashboard
-                      </Link>
+                      {
+                        role === "Employee" && <>
+                          <Link
+                            to='/dashboard/work-sheet'
+                            className='block px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                          >
+                            Dashboard
+                          </Link>
+                        </>
+                      }
+                      {
+                        role === "HR" && <>
+                          <Link
+                            to='/dashboard/employee-list'
+                            className='block px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                          >
+                            Dashboard
+                          </Link>
+                        </>
+                      }
+                      {
+                        role === "Admin" && <>
+                          <Link
+                            to='/dashboard/work-sheet'
+                            className='block px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                          >
+                            Dashboard
+                          </Link>
+                        </>
+                      }
                       <div
                         onClick={logOut}
                         className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'

@@ -8,11 +8,13 @@ import WorkSheet from "../Pages/Dashboard/Employee/WorkSheet/WorkSheet";
 import PaymentHistory from "../Pages/Dashboard/Employee/PaymentHistory/PaymentHistory";
 import PrivateRoute from "./PrivateRoute";
 import EmployeeList from "../Pages/Dashboard/HR/EmployeeList/EmployeeList";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 export const router = createBrowserRouter([
     {
         path: "/",
         element: <Main></Main>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path:'/',

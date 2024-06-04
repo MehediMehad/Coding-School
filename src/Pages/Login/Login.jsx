@@ -8,6 +8,7 @@ import logInImg from '../../assets/signUp.jpg'
 import useAxiosCommon from '../../hooks/useAxiosCommon'
 
 const Login = () => {
+  const {user} = useAuth()
   const navigate = useNavigate()
   const axiosCommon = useAxiosCommon()
   const location = useLocation()
@@ -76,6 +77,9 @@ const Login = () => {
             navigate('/')
         })
     })
+  }
+  if (user.email) {
+    return navigate('/')
   }
 
   return (
