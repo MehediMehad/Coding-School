@@ -7,11 +7,11 @@ const Services = () => {
         <div className="bg-[#f9f9f9] justify-around pt-32 items-center mx-auto">
             <div className="text-center">
                 <h1 className=" uppercase text-[#3B41C9] text-5xl">what do we learn ?</h1>
-            </div>
+            </div> 
             <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:flex-wrap lg:justify-evenly lg:px-10">
                 <div className="flex flex-col max-w-sm mx-4 my-6 shadow-lg">
                     <div className="px-4 py-12 rounded-t-lg sm:px-8 md:px-12 dark:bg-gray-50">
-                        <p className="relative px-6 py-1 text-lg italic text-center dark:text-gray-800">
+                        <p className="relative px-6 py-1 text-lg italic  dark:text-gray-800">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="w-8 h-8 dark:text-violet-600">
                                 <path d="M232,246.857V16H16V416H54.4ZM48,48H200V233.143L48,377.905Z"></path>
                                 <path d="M280,416h38.4L496,246.857V16H280ZM312,48H464V233.143L312,377.905Z"></path>

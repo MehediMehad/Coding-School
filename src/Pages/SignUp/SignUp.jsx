@@ -62,7 +62,8 @@ const SignUp = () => {
                 role: roleValue,
                 designation: designation,
                 salary: salary,
-                bankAccount: bankAccount
+                bankAccount: bankAccount,
+                status: false
             }
             console.log(userInfo);
             axiosCommon.post('/users', userInfo)

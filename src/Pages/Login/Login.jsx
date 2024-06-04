@@ -67,7 +67,8 @@ const Login = () => {
             role: "Employee",
             designation: 'default',
             salary: 11111,
-            bankAccount:9999
+            bankAccount:9999,
+            status: false
         }
         axiosCommon.post('/users', userInfo)
         .then(res =>{
