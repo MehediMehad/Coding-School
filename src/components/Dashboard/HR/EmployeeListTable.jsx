@@ -2,9 +2,10 @@ import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 // import useAuth from "../../../hooks/useAuth";
 import Row from "./Row";
+import { toast } from "react-toastify";
 
 
-const EmployeeListTable = ({employees}) => {
+const EmployeeListTable = ({employees, refetch}) => {
     const axiosSecure = useAxiosSecure()
     // const {user: loggedInUser} = useAuth()
 
@@ -15,7 +16,7 @@ const EmployeeListTable = ({employees}) => {
         },
         onSuccess: data =>{
             console.log(data)
-            alert("verified success")
+            toast("verified success")
         }
     })
 
@@ -39,7 +40,7 @@ const EmployeeListTable = ({employees}) => {
                     </thead>
                     <tbody className="gap-y-2">
                         {
-                            employees.map((item, index) =><Row key={item._id} item={item} index={index} mutateAsync={mutateAsync} ></Row> )
+                            employees.map((item, index) =><Row key={item._id} item={item} index={index} mutateAsync={mutateAsync} refetch={refetch} ></Row> )
                         }
                     </tbody>
 

@@ -78,7 +78,7 @@ const Login = () => {
         })
     })
   }
-  if (user.email) {
+  if (user) {
     return navigate('/')
   }
 

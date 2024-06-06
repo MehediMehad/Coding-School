@@ -1,19 +1,27 @@
 import { useState } from "react";
+import Button from "../Button";
+import PaymentModal from "../../Modal/PaymentModal";
 
 
-const Row = ({item, index, mutateAsync}) => {
+const Row = ({ item, index, mutateAsync, refetch }) => {
     const [status, setStatus] = useState(item?.status)
-    console.log(item);
+    const [isOpen, setIsOpen] = useState(false)
+    // console.log(item, 'from row');
 
-    const toggleVerified = async () =>{
-        setStatus( prevStatus => !prevStatus)
-        const user ={
+    const closeModal = () => {
+        setIsOpen(false)
+    }
+
+    const toggleVerified = async () => {
+        setStatus(prevStatus => !prevStatus)
+        const user = {
             status: !status,
             email: item.email
         }
-        try{
+        try {
             await mutateAsync(user)
-        }catch(err){
+            refetch()
+        } catch (err) {
             console.log(err);
         }
 
@@ -46,7 +54,25 @@ const Row = ({item, index, mutateAsync}) => {
                 {item?.salary}
             </td>
             <td>
-                <button className="btn text-blue-400">Pay</button>
+                <Button
+                      disabled={item?.status === false}
+                    onClick={() => setIsOpen(true)}
+                    //   label={room?.booked ? 'Booked' : 'Reserve'}
+                    label={"Pay"}
+                />
+                <PaymentModal
+                    isOpen={isOpen}
+                    refetch={refetch}
+                    closeModal={closeModal}
+                    employeeInfo={{
+                        id: item._id,
+                        name: item.name,
+                        role: item.role,
+                        salary: item.salary,
+                        email: item.email,
+                        status: item.status,
+                    }}
+                />
             </td>
         </tr>
     );

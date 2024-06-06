@@ -8,6 +8,7 @@ import { useState } from 'react'
 import useAxiosCommon from '../../hooks/useAxiosCommon'
 
 const SignUp = () => {
+    // const {user} = useAuth()
     const navigate = useNavigate()
     const axiosCommon = useAxiosCommon()
     const [roleValue, setRoleValue] = useState('')
@@ -94,6 +95,9 @@ const SignUp = () => {
             })
         })
     }
+    // if (user) {
+    //     return navigate('/')
+    //   }
 
     return (
         <div className=''>
