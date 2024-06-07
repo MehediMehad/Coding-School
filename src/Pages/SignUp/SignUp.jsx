@@ -6,6 +6,7 @@ import { TbFidgetSpinner } from 'react-icons/tb'
 // import signUpImg from '../../assets/signUp.jpg'
 import { useState } from 'react'
 import useAxiosCommon from '../../hooks/useAxiosCommon'
+// import { reload } from 'firebase/auth'
 
 const SignUp = () => {
     const {user} = useAuth()
@@ -92,12 +93,13 @@ const SignUp = () => {
             .then(res =>{
                 console.log(res.data);
                 navigate('/')
+                // reload()
             })
         })
     }
-    // if (user) {
-    //     return navigate('/')
-    //   }
+    if (user) {
+        return navigate('/')
+      }
 
     return (
         <div className=''>

@@ -48,33 +48,7 @@ const PaymentModal = ({ closeModal, isOpen, employeeInfo, refetch }) => {
                 >
                   Review Info Before Reserve
                 </DialogTitle>
-                <div className='mt-2'>
-                  <p className='text-sm text-gray-500'>
-                    Room: 
-                  </p>
-                </div>
-                <div className='mt-2'>
-                  <p className='text-sm text-gray-500'>
-                    Location: 
-                  </p>
-                </div>
-                <div className='mt-2'>
-                  <p className='text-sm text-gray-500'>
-                    Guest: 
-                  </p>
-                </div>
-                {/* <div className='mt-2'>
-                  <p className='text-sm text-gray-500'>
-                    From: {format(new Date(paymentInfo.from), 'PP')} - To:{' '}
-                    {format(new Date(paymentInfo.to), 'PP')}
-                  </p>
-                </div> */}
-
-                <div className='mt-2'>
-                  <p className='text-sm text-gray-500'>
-                    Price: $ 
-                  </p>
-                </div>
+                
                 <hr className='mt-8 ' />
                 {/* checkout form */}
                 <Elements stripe={stripePromise}>
