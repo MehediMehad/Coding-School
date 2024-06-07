@@ -31,11 +31,12 @@ const EmployeeListTable = ({employees, refetch}) => {
                             <th>#</th>
                             <th>Name</th>
                             <th>Designation</th>
-                            <th>Status</th>
-                            <th>Change</th>
+                            <th>Verified</th>
+                            <th>Status Change</th>
                             <th>Bank Account</th>
                             <th>Salary</th>
                             <th>Pay</th>
+                            <th>Details</th>
                         </tr>
                     </thead>
                     <tbody className="gap-y-2">

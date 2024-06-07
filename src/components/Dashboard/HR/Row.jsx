@@ -1,12 +1,15 @@
 import { useState } from "react";
 import Button from "../Button";
 import PaymentModal from "../../Modal/PaymentModal";
+import { NavLink } from "react-router-dom";
 
 
 const Row = ({ item, index, mutateAsync, refetch }) => {
     const [status, setStatus] = useState(item?.status)
     const [isOpen, setIsOpen] = useState(false)
     // console.log(item, 'from row');
+
+    // const detailsId = useLoaderData()
 
     const closeModal = () => {
         setIsOpen(false)
@@ -73,6 +76,12 @@ const Row = ({ item, index, mutateAsync, refetch }) => {
                         status: item.status,
                     }}
                 />
+            </td>
+            <td>
+                <NavLink to={`/dashboard/details/${item._id}`}>
+                <button>Details</button>
+                </NavLink>
+
             </td>
         </tr>
     );
