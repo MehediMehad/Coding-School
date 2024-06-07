@@ -16,7 +16,7 @@ const EmployeeList = () => {
         queryKey: ['employees'],
         queryFn: async () => {
           const { data } = await axiosCommon.get(`/employees`)
-    
+          // isLoading(false)
           return data
         },
       })

@@ -8,7 +8,7 @@ const DashboardLayouts = () => {
             {/* Sidebar */}
             <Sidebar></Sidebar>
             {/* Outlet */}
-            <div className="flex-1 md:ml-64">
+            <div className="flex-1 md:ml-64 bg-white">
                 <div className="p-5">
                     <Outlet></Outlet>
                 </div>

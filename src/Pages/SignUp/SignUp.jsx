@@ -8,7 +8,7 @@ import { useState } from 'react'
 import useAxiosCommon from '../../hooks/useAxiosCommon'
 
 const SignUp = () => {
-    // const {user} = useAuth()
+    const {user} = useAuth()
     const navigate = useNavigate()
     const axiosCommon = useAxiosCommon()
     const [roleValue, setRoleValue] = useState('')
@@ -104,7 +104,7 @@ const SignUp = () => {
             {/* <div className='w-1/2 md:flex justify-center h-2/6 hidden'>
                 <img src={signUpImg} alt="" />
             </div> */}
-            <div className=' md:mx-60 mt-10 items-center bg-black rounded-md'>
+            <div className=' md:mx-60 pt-10 items-center rounded-md'>
                 <div className='flex flex-col p-6 rounded-md  bg-gray-100 text-gray-900 '>
                     <div className='mb-8 text-center'>
                         <h1 className='mb-3 text-4xl font-bold'>Sign Up</h1>

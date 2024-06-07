@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
             // Employee Only
             {
                 path:'work-sheet',
-                element:<WorkSheet></WorkSheet>,
+                element:<PrivateRoute><WorkSheet></WorkSheet></PrivateRoute>,
             },
             {
                 path:'payment-history',

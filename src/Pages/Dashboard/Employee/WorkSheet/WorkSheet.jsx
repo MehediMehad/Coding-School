@@ -4,6 +4,7 @@ import useAuth from "../../../../hooks/useAuth";
 import useAxiosCommon from "../../../../hooks/useAxiosCommon";
 import { useForm } from "react-hook-form";
 import { useQuery } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 const WorkSheet = () => {
     const {user} = useAuth()
@@ -35,7 +36,7 @@ const WorkSheet = () => {
         })
         if (workInfo.data.insertedId) {
             refetch()
-            alert('success')
+            alert('successfully added')
             reset()
         }
         console.log(workInfo.data);

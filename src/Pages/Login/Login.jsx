@@ -75,6 +75,7 @@ const Login = () => {
         .then(res =>{
             console.log(res.data);
             navigate('/')
+            // setLoading(false)
         })
     })
   }
@@ -83,12 +84,12 @@ const Login = () => {
   }
 
   return (
-    <div className='flex justify-evenly mt-20'>
+    <div className='flex justify-evenly pt-20'>
         <div className="w-1/2 md:flex justify-center h-[578px] hidden">
             <img src={logInImg} alt="LogIn image" />
         </div>
     <div className='flex justify-center items-center '>
-      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 bg-gray-100 text-gray-900'>
+      <div className='flex flex-col max-w-md p-6 rounded-md sm:p-10 text-gray-900'>
         <div className='mb-8 text-center'>
           <h1 className='my-3 text-4xl font-bold'>Log In</h1>
           <p className='text-sm text-gray-400'>
