@@ -74,6 +74,7 @@ const Login = () => {
         axiosCommon.post('/users', userInfo)
         .then(res =>{
             console.log(res.data);
+            toast.success('Signup Successful')
             navigate('/')
             // setLoading(false)
         })

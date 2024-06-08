@@ -36,7 +36,7 @@ const WorkSheet = () => {
         })
         if (workInfo.data.insertedId) {
             refetch()
-            alert('successfully added')
+            toast('successfully added')
             reset()
         }
         console.log(workInfo.data);

@@ -16,7 +16,7 @@ const useRole = () => {
 
   //   Fetch user info using logged in user email
 
-  return [role, isLoading]
+  return [role, isLoading, ]
 }
 
 export default useRole

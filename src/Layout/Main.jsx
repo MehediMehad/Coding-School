@@ -7,9 +7,8 @@ import 'react-toastify/dist/ReactToastify.css';
 const Main = () => {
     return (
         <div>
-            <ToastContainer>
+            <ToastContainer/>
                 
-            </ToastContainer>
             <NavBar></NavBar>
             <Outlet></Outlet>
             <Footer></Footer>

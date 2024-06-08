@@ -6,10 +6,10 @@ import { TbFidgetSpinner } from 'react-icons/tb'
 // import signUpImg from '../../assets/signUp.jpg'
 import { useState } from 'react'
 import useAxiosCommon from '../../hooks/useAxiosCommon'
+import { toast } from 'react-toastify'
 // import { reload } from 'firebase/auth'
 
 const SignUp = () => {
-    const {user} = useAuth()
     const navigate = useNavigate()
     const axiosCommon = useAxiosCommon()
     const [roleValue, setRoleValue] = useState('')
@@ -18,6 +18,7 @@ const SignUp = () => {
         setRoleValue(event.target.value)
     }
     const {
+        user,
         createUser,
         signInWithGoogle,
         updateUserProfile,
@@ -68,17 +69,18 @@ const SignUp = () => {
                 status: false
             }
             console.log(userInfo);
-            axiosCommon.post('/users', userInfo)
+            await axiosCommon.post('/users', userInfo)
+            toast.success('Registration Successful')
+            // window.location.reload();
             navigate('/')
-            alert('Registration Successful')
         } catch (err) {
             console.log(err)
-            alert(err.message)
+            toast(err.message)
         }
     }
 
     // handle google signIn
-    const handleGoogleSignIn = () => {
+    const handleGoogleSignIn =  () => {
         signInWithGoogle()
         .then(result =>{
             const userInfo = {
@@ -86,14 +88,16 @@ const SignUp = () => {
                 name: result.user?.displayName,
                 role: "Employee",
                 designation: 'default',
-                salary: 11111,
-                bankAccount:9999
+                salary: 10000,
+                bankAccount:9999,
+                status: false
             }
             axiosCommon.post('/users', userInfo)
             .then(res =>{
                 console.log(res.data);
+                toast.success('Registration Successful')
+                // window.location.reload();
                 navigate('/')
-                // reload()
             })
         })
     }

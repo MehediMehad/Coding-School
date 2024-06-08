@@ -45,7 +45,7 @@ const Row = ({ item, index, mutateAsync, refetch }) => {
                 <br />
             </td>
             <td>
-                <span>{!status ? "Verified" : "NotVerified"}</span>
+                <span>{!status ? <p className="badge bg-red-300"> false </p> : <p className="badge bg-green-400">true</p> }</span>
             </td>
             <td>
                 <button className="btn btn-sm ml-3" onClick={toggleVerified}>
@@ -79,7 +79,7 @@ const Row = ({ item, index, mutateAsync, refetch }) => {
             </td>
             <td>
                 <NavLink to={`/dashboard/details/${item._id}`}>
-                <button>Details</button>
+                <button className="btn btn-sm bg-orange-400">Details</button>
                 </NavLink>
 
             </td>

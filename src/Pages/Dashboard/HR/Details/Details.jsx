@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
 import { data } from "autoprefixer";
 import { useQuery } from "@tanstack/react-query";
+// import PaymentChart from "../../../../components/Dashboard/HR/PaymentChart";
 
 
 const Details = () => {
@@ -29,8 +30,11 @@ const Details = () => {
         <div>
             <h1>/details</h1>
             {
-                item.map( (EP, index) => <p key={EP._id}>{index + 1}</p>)
+                // item.map( (EP, index) => <p key={EP._id} >{index + 1}</p>)
             }
+            <div>
+                {/* <PaymentChart item={item} id={id}></PaymentChart> */}
+            </div>
         </div>
     );
 };

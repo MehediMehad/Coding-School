@@ -180,7 +180,8 @@ const CheckoutForm = ({ closeModal, employeeInfo, refetch }) => {
               <option value="11">Dec</option>
             </select>
           </div>
-          <input onChange={handleChangeYear} type="number" defaultValue={2024} placeholder="Year" className="input  focus:outline-[#2f47ba] bg-gray-200 text-gray-900" required />
+          <input 
+           onChange={handleChangeYear} type="number" defaultValue={2024} placeholder="Year" className="input  focus:outline-[#2f47ba] bg-gray-200 text-gray-900" required />
         </div>
         <div className='flex mt-2 justify-around'>
 
