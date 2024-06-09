@@ -10,6 +10,7 @@ import PrivateRoute from "./PrivateRoute";
 import EmployeeList from "../Pages/Dashboard/HR/EmployeeList/EmployeeList";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Details from "../Pages/Dashboard/HR/Details/Details";
+import Progress from "../Pages/Dashboard/HR/Progress/Progress";
 
 export const router = createBrowserRouter([
     {
@@ -47,13 +48,16 @@ export const router = createBrowserRouter([
                 element:<EmployeeList></EmployeeList>
             },
             {
-                path:'details/:id',
+                path:'details/:slug',
                 element:<Details></Details>,
-                loader: ({params}) => fetch(`http://localhost:5000/payments/${params.id}`)
             },
             {
                 path:'paymentHistory',
                 element:<PaymentHistory></PaymentHistory>,
+            },
+            {
+                path:'progress',
+                element:<Progress></Progress>
             },
 
         ]
