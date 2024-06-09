@@ -1,61 +1,85 @@
-import React, { useState } from 'react';
+import  { useState, useEffect } from 'react';
 
 const Progress = () => {
-    const [employeeName, setEmployeeName] = useState('');
-    const [month, setMonth] = useState('');
-    const [workRecords, setWorkRecords] = useState([]);
-    console.log(workRecords);
+  const [records, setRecords] = useState([]);
+  const [employee, setEmployee] = useState('');
+  const [month, setMonth] = useState('');
 
-    const fetchWorkRecords = async () => {
-        try {
-            const response = await fetch(`http://localhost:5000/progress?employeeName=${employeeName}&month=${month}`);
-            const data = await response.json();
-            setWorkRecords(data);
-        } catch (err) {
-            console.error(err);
-        }
-    };
+  console.log(month, records);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        fetchWorkRecords();
-    };
+  useEffect(() => {
+    fetchRecords();
+  }, [employee, month]);
 
-    return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Employee Name:
-                    <input 
-                        type="text" 
-                        value={employeeName} 
-                        onChange={(e) => setEmployeeName(e.target.value)} 
-                    />
-                </label>
-                <br />
-                <label>
-                    Month:
-                    <input 
-                        type="month" 
-                        value={month} 
-                        onChange={(e) => setMonth(e.target.value)} 
-                    />
-                </label>
-                <br />
-                <button type="submit">Filter</button>
-            </form>
-            <div>
-                <h2>Work Records</h2>
-                <ul>
-                    {workRecords.map(record => (
-                        <li key={record._id}>
-                            {record.employeeName}: {record.workDone} on {new Date(record.date).toLocaleDateString()}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </div>
-    );
-};
+  const fetchRecords = async () => {
+    let url = `http://localhost:5000/progress?`;
+    if (employee) url += `employee=${employee}&`;
+    if (month) url += `month=${month}&`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+    setRecords(data);
+  };
+  const [selectedEmployee, setSelectedEmployee] = useState('');
+
+  const handleSelectChange = (e) => {
+    setSelectedEmployee(e.target.value);
+  };
+  const filteredEmployees = selectedEmployee ? records.filter(employee => employee.name === selectedEmployee): records;
+  console.log(filteredEmployees);
+
+  return (
+    <div className="p-5">
+      <h1 className="text-3xl font-bold mb-5">Employee Work Records</h1>
+      <div className="mb-4">
+        <label htmlFor="employee" className="block text-gray-700 text-sm font-bold mb-2">Select Employee:</label>
+        <select
+          id="employee"
+          value={selectedEmployee}
+          onChange={handleSelectChange}
+          className="shadow border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+        >
+          <option value="">All</option>
+          {records.map(employee => (
+            <option key={employee.id} value={employee.name}>{employee.name}</option>
+          ))}
+        </select>
+      </div>
+      <div className="mb-5">
+        <label className="block mb-2">Select Month (YYYY-MM):</label>
+        <input
+          type="month"
+          value={month}
+          onChange={(e) => setMonth(e.target.value)}
+          className="p-2 border border-gray-300"
+        />
+      </div>
+      <table className="table-auto w-full border-collapse">
+        <thead>
+          <tr>
+            <th className="border border-gray-400 p-2">Name</th>
+            <th className="border border-gray-400 p-2">Email</th>
+            <th className="border border-gray-400 p-2">Role</th>
+            <th className="border border-gray-400 p-2">Tasks</th>
+            <th className="border border-gray-400 p-2">Hours Worked</th>
+            <th className="border border-gray-400 p-2">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {filteredEmployees.map((record) => (
+            <tr key={record._id}>
+              <td className="border border-gray-400 p-2">{record.name}</td>
+              <td className="border border-gray-400 p-2">{record.email}</td>
+              <td className="border border-gray-400 p-2">{record.role}</td>
+              <td className="border border-gray-400 p-2">{record.tasks}</td>
+              <td className="border border-gray-400 p-2">{record.hoursWorked}</td>
+              <td className="border border-gray-400 p-2">{new Date(record.date).toLocaleDateString()}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
 
 export default Progress;
