@@ -23,7 +23,7 @@ const NavBar = () => {
       user && role == "HR" && <li><Link to="/dashboard/employee-list">Dashboard</Link></li>
     }
     {
-      user && role == "AB" && <li><Link to="/dashboard/emAB">Dashboard</Link></li>
+      user && role == "AB" && <li><Link to="/dashboard/all-employee-list">Dashboard</Link></li>
     }
   </>
 

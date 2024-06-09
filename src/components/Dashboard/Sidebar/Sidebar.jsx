@@ -90,10 +90,9 @@ const Sidebar = () => {
               }
               {/* Admin */}
               {
-                role === "Admin" && <>
+                role === "AB" && <>
 
-                  <MenuItem label={'Work Admin Sheet'} address={'work-sheet'} icon={MdWorkHistory}></MenuItem>
-                  <MenuItem label={'Payment Admin History'} address={'payment-history'} icon={RiMoneyRupeeCircleFill}></MenuItem>
+                  <MenuItem label={'All Employee'} address={'all-employee-list'} icon={RiMoneyRupeeCircleFill}></MenuItem>
                 </>
               }
               {/* My Home */}

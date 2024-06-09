@@ -26,7 +26,7 @@ const Progress = () => {
     setSelectedEmployee(e.target.value);
   };
   const filteredEmployees = selectedEmployee ? records.filter(employee => employee.name === selectedEmployee): records;
-  console.log(filteredEmployees);
+  
 
   return (
     <div className="p-5">
@@ -46,7 +46,7 @@ const Progress = () => {
         </select>
       </div>
       <div className="mb-5">
-        <label className="block mb-2">Select Month (YYYY-MM):</label>
+        <label className="block mb-2">:</label>
         <input
           type="month"
           value={month}
