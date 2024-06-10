@@ -83,7 +83,7 @@ const Sidebar = () => {
               {
                 role === "HR" && <>
                   <MenuItem label={'Employee List'} address={'employee-list'} icon={FaList}></MenuItem>
-                  <MenuItem label={'Payment History'} address={'paymentHistory'} icon={RiMoneyRupeeCircleFill}></MenuItem>
+                  {/* <MenuItem label={'Payment History'} address={'paymentHistory'} icon={RiMoneyRupeeCircleFill}></MenuItem> */}
                   <MenuItem label={'Progress'} address={'progress'} icon={GiProgression}></MenuItem>
                 </>
               }
