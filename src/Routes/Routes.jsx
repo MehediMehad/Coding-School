@@ -12,6 +12,8 @@ import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Details from "../Pages/Dashboard/HR/Details/Details";
 import Progress from "../Pages/Dashboard/HR/Progress/Progress";
 import AllEmployee from "../Pages/Dashboard/Admin/AllEmployee/AllEmployee";
+import ContactUs from "../Pages/ContactUs/ContactUs";
+import AdminContact from "../Pages/Dashboard/Admin/AdminContact/AdminContact";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +24,10 @@ export const router = createBrowserRouter([
             {
                 path:'/',
                 element: <Home></Home>
+            },
+            {
+                path:'/contactUs',
+                element: <ContactUs></ContactUs>
             },
         ]
     },
@@ -60,10 +66,14 @@ export const router = createBrowserRouter([
                 path:'progress',
                 element:<Progress></Progress>
             },
-            // 
+            // Admin
             {
                 path:'all-employee-list',
                 element:<AllEmployee></AllEmployee>
+            },
+            {
+                path:'adminContact',
+                element:<AdminContact></AdminContact>
             },
 
         ]

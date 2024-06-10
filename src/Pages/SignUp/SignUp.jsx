@@ -3,11 +3,9 @@ import { FcGoogle } from 'react-icons/fc'
 import useAuth from '../../hooks/useAuth'
 import axios from 'axios'
 import { TbFidgetSpinner } from 'react-icons/tb'
-// import signUpImg from '../../assets/signUp.jpg'
 import { useState } from 'react'
 import useAxiosCommon from '../../hooks/useAxiosCommon'
-import { toast } from 'react-toastify'
-// import { reload } from 'firebase/auth'
+import toast from 'react-hot-toast'
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -71,7 +69,7 @@ const SignUp = () => {
             console.log(userInfo);
             await axiosCommon.post('/users', userInfo)
             toast.success('Registration Successful')
-            // window.location.reload();
+            window.location.reload();
             navigate('/')
         } catch (err) {
             console.log(err)
@@ -96,7 +94,7 @@ const SignUp = () => {
             .then(res =>{
                 console.log(res.data);
                 toast.success('Registration Successful')
-                // window.location.reload();
+                window.location.reload();
                 navigate('/')
             })
         })

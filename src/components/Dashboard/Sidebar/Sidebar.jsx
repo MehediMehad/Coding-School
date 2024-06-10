@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { GrLogout } from 'react-icons/gr'
-import { FcSettings } from 'react-icons/fc'
 import { AiOutlineBars } from 'react-icons/ai'
 import { NavLink } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
@@ -9,7 +8,10 @@ import { MdHomeWork, MdWorkHistory } from 'react-icons/md'
 import useRole from '../../../hooks/useRole'
 import MenuItem from './Menu/MenuItem'
 import { RiMoneyRupeeCircleFill } from 'react-icons/ri'
+import { BiMessageDetail } from "react-icons/bi";
+import { FaUsers } from "react-icons/fa6";
 import { FaList } from 'react-icons/fa'
+import { GiProgression } from 'react-icons/gi'
 
 const Sidebar = () => {
   const { logOut } = useAuth()
@@ -85,14 +87,15 @@ const Sidebar = () => {
                 role === "HR" && <>
                   <MenuItem label={'Employee List'} address={'employee-list'} icon={FaList}></MenuItem>
                   <MenuItem label={'Payment History'} address={'paymentHistory'} icon={RiMoneyRupeeCircleFill}></MenuItem>
-                  <MenuItem label={'Progress'} address={'progress'} icon={RiMoneyRupeeCircleFill}></MenuItem>
+                  <MenuItem label={'Progress'} address={'progress'} icon={GiProgression}></MenuItem>
                 </>
               }
               {/* Admin */}
               {
                 role === "AB" && <>
 
-                  <MenuItem label={'All Employee'} address={'all-employee-list'} icon={RiMoneyRupeeCircleFill}></MenuItem>
+                  <MenuItem label={'All Employee'} address={'all-employee-list'} icon={FaUsers}></MenuItem>
+                  <MenuItem label={'Contacts'} address={'adminContact'} icon={BiMessageDetail}></MenuItem>
                 </>
               }
               {/* My Home */}
@@ -115,7 +118,7 @@ const Sidebar = () => {
           <hr />
 
           {/* Profile Menu */}
-          <NavLink
+          {/* <NavLink
             to='/dashboard/profile'
             className={({ isActive }) =>
               `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${isActive ? 'bg-gray-300  text-gray-700' : 'text-gray-600'
@@ -125,7 +128,7 @@ const Sidebar = () => {
             <FcSettings className='w-5 h-5' />
 
             <span className='mx-4 font-medium'>Profile</span>
-          </NavLink>
+          </NavLink> */}
           <button
             onClick={logOut}
             className='flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform'

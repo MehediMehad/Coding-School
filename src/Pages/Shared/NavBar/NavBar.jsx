@@ -14,7 +14,10 @@ const NavBar = () => {
   const navLinks = <>
     <li><Link to="/">Home</Link></li>
     {
-      !user && <li><Link to="/login">Dashboard</Link></li>
+      !user && <> 
+      <li><Link to="/login">Dashboard</Link></li>
+      <li><Link to="/contactUs">Contact Us</Link></li>
+      </>
     }
     {
       user && !roleLoading && role == "Employee" && <li><Link to="/dashboard/work-sheet">Dashboard</Link></li>
