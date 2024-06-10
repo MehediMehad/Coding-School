@@ -1,5 +1,5 @@
 ## Coding School
-### Art Lab [@assignment12_category_0005]
+###  [@assignment12_category_0005]
 
 #### Live link: [awei-b5fd9.firebaseapp.com](https://awei-b5fd9.firebaseapp.com/)
 

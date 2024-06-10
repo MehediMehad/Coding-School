@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 const AllEmployee = () => {
   const [employees, setEmployees] = useState([]);
+  console.log(employees);
   const [view, setView] = useState('table');
 
   console.log(employees);
