@@ -12,6 +12,8 @@ import { BiMessageDetail } from "react-icons/bi";
 import { FaUsers } from "react-icons/fa6";
 import { FaList } from 'react-icons/fa'
 import { GiProgression } from 'react-icons/gi'
+import logo from '../../.././assets/codingmain.png'
+
 
 const Sidebar = () => {
   const { logOut } = useAuth()
@@ -32,7 +34,7 @@ const Sidebar = () => {
             <Link to='/'>
               <img
                 // className='hidden md:block'
-                src='https://i.ibb.co/4ZXzmq5/logo.png'
+                src={logo}
                 alt='logo'
                 width='100'
                 height='100'
@@ -56,15 +58,10 @@ const Sidebar = () => {
       >
         <div>
           <div>
-            <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-rose-100 mx-auto'>
+            <div className='w-full hidden md:flex px-4 py-2 shadow-lg rounded-lg justify-center items-center bg-blue-200 mx-auto text-xl'>
               <Link to='/'>
-                <img
-                  // className='hidden md:block'
-                  src='https://i.ibb.co/4ZXzmq5/logo.png'
-                  alt='logo'
-                  width='100'
-                  height='100'
-                />
+              
+              Let's Your Code
               </Link>
             </div>
           </div>

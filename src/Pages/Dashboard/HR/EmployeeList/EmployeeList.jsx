@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../../../../hooks/useAxiosCommon";
 import EmployeeListTable from "../../../../components/Dashboard/HR/EmployeeListTable";
 import LoadingSpinner from "../../../../components/LoadingSpinner/LoadingSpinner";
+import { Helmet } from "react-helmet-async";
 // import { useState } from "react";
 
 
@@ -23,6 +24,9 @@ const EmployeeList = () => {
       if (isLoading) return <LoadingSpinner></LoadingSpinner>
     return (
         <div>
+          <Helmet>
+            <title>EmployeeList</title>
+          </Helmet>
             <EmployeeListTable
             employees={employees}
             refetch={refetch}

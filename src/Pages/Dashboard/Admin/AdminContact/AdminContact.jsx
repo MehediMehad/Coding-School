@@ -1,10 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosCommon from "../../../../hooks/useAxiosCommon";
+import { Helmet } from "react-helmet-async";
 
 const AdminContact = () => {
     const axiosCommon = useAxiosCommon()
 
-    const { data: messageData = [],  } = useQuery({
+    const { data: messageData = [], } = useQuery({
         queryKey: ['adminContact'],
         queryFn: async () => {
             const { data } = await axiosCommon.get(`/messageA`)
@@ -14,7 +15,11 @@ const AdminContact = () => {
     console.log(messageData);
 
     return (
+
         <div>
+            <Helmet>
+                <title>Contact</title>
+            </Helmet>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

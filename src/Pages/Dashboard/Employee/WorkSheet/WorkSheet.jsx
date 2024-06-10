@@ -5,34 +5,35 @@ import useAxiosCommon from "../../../../hooks/useAxiosCommon";
 import { useForm } from "react-hook-form";
 import { useQuery } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet-async";
 
 const WorkSheet = () => {
-    const {user} = useAuth()
+    const { user } = useAuth()
     const [date, setDate] = useState(new Date());
     const axiosCommon = useAxiosCommon()
     const { register, handleSubmit, reset } = useForm()
 
-    const {data: wakings = [], refetch,} = useQuery({
+    const { data: wakings = [], refetch, } = useQuery({
         queryKey: ['workSheet', user?.email],
         queryFn: async () => {
-          const { data } = await axiosCommon.get(`/workSheet/${user?.email}`)
-          return data
+            const { data } = await axiosCommon.get(`/workSheet/${user?.email}`)
+            return data
         },
-      })
-      console.log(wakings);
+    })
+    console.log(wakings);
 
 
     const onSubmit = async (data) => {
-        const workData ={
+        const workData = {
             name: user?.displayName,
             email: user?.email,
             role: 'Employee',
             tasks: data?.tasks,
-            hoursWorked : data?.hoursWorked,
+            hoursWorked: data?.hoursWorked,
             date: date
         }
-        const workInfo = await axiosCommon.post('/workSheets', workData,{
-            
+        const workInfo = await axiosCommon.post('/workSheets', workData, {
+
         })
         if (workInfo.data.insertedId) {
             refetch()
@@ -42,21 +43,26 @@ const WorkSheet = () => {
         console.log(workInfo.data);
 
     }
-    
-    
+
+
     return (
-        <div>
-            <h1>WorkSheet</h1>
-            <AddWork 
-            refetch={refetch}
-            register={register}
-            handleSubmit={handleSubmit}
-            onSubmit={onSubmit}
-            setDate={setDate}
-            date={date}
-            wakings={wakings}
-             ></AddWork>
-        </div>
+        <>
+            <Helmet>
+                <title>WorkSheet</title>
+            </Helmet>
+            <div>
+                <h1 className="text-3xl mb-5 ">WorkSheet</h1>
+                <AddWork
+                    refetch={refetch}
+                    register={register}
+                    handleSubmit={handleSubmit}
+                    onSubmit={onSubmit}
+                    setDate={setDate}
+                    date={date}
+                    wakings={wakings}
+                ></AddWork>
+            </div>
+        </>
     );
 };
 

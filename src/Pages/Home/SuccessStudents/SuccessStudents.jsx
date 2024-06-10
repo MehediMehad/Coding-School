@@ -1,10 +1,10 @@
 
 const SuccessStudents = () => {
     return (
-        <div className="bg-[#f9f9f9]">
-        <div className="bg-[#f9f9f9] justify-around pt-32 items-center mx-auto">
+        <div className="bg-[#f9f9f9] mb-28">
+        <div className="bg-[#f9f9f9] justify-around pt-32 items-center mx-auto ">
             <div className="text-center">
-                <h1 className=" uppercase text-[#3B41C9] text-5xl">what do we learn ?</h1>
+                <h1 className=" uppercase text-[#3B41C9] text-5xl">Our Student Say ?</h1>
             </div> 
             <div className="container flex flex-col items-center justify-center mx-auto lg:flex-row lg:flex-wrap lg:justify-evenly lg:px-10">
                 <div className="flex flex-col max-w-sm mx-4 my-6 shadow-lg">
@@ -21,7 +21,7 @@ const SuccessStudents = () => {
                         </p>
                     </div>
                     <div className="flex flex-col items-center justify-center p-8 rounded-b-lg dark:bg-violet-600 dark:text-gray-50">
-                        <img src="" alt="" className="w-16 h-16 mb-2 -mt-16  rounded-full" />
+                        <img src="https://i.ibb.co/jVB4DFk/portrait-handsome-confident-model-sexy-stylish-man-dressed-biker-leather-jacket-black-jeans-fashion.jpg" alt="" className="w-16 h-16 mb-2 -mt-16  rounded-full" />
                         <p className="text-xl font-semibold leading-tight">Web Development</p>
                         <p className="text-sm uppercase">Jonkar Mahmud</p>
                     </div>

@@ -6,6 +6,7 @@ import { TbFidgetSpinner } from 'react-icons/tb'
 import { useState } from 'react'
 import useAxiosCommon from '../../hooks/useAxiosCommon'
 import toast from 'react-hot-toast'
+import { Helmet } from 'react-helmet-async'
 
 const SignUp = () => {
     const navigate = useNavigate()
@@ -104,6 +105,10 @@ const SignUp = () => {
       }
 
     return (
+        <>
+        <Helmet>
+            <title>SignUp</title>
+        </Helmet>
         <div className=''>
             {/* <div className='w-1/2 md:flex justify-center h-2/6 hidden'>
                 <img src={signUpImg} alt="" />
@@ -112,7 +117,7 @@ const SignUp = () => {
                 <div className='flex flex-col p-6 rounded-md  bg-gray-100 text-gray-900 '>
                     <div className='mb-8 text-center'>
                         <h1 className='mb-3 text-4xl font-bold'>Sign Up</h1>
-                        <p className='text-sm text-gray-400'>Welcome to AWEI</p>
+                        <p className='text-sm text-gray-400'>Welcome to Coding School</p>
                     </div>
                     <form onSubmit={handleSubmit} className='space-y-6 '>
                         <div className='space-y-4'>
@@ -160,7 +165,7 @@ const SignUp = () => {
                             </div>
                             {/* 2nd row */}
                             <div className="flex">
-                            <div className='md:w-1/2'>
+                            <div className='md:w-1/2 '>
                                 <label htmlFor='image' className='block mb-2 text-sm'>
                                     Select Image:
                                 </label>
@@ -275,6 +280,7 @@ const SignUp = () => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 

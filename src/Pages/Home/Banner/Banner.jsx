@@ -20,7 +20,7 @@ const Banner = () => {
 
     return (
         <>
-        <div className='h-[900px]'>
+        <div className='md:h-[900px] '>
         <Swiper
           pagination={pagination}
           modules={[Pagination]}
